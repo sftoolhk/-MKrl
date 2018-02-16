@@ -15,6 +15,8 @@ Gentoo-livedvd-amd64-multilib-20160704.iso
 
 mkfs.reiserfs
 sudo mkfs -t vfat -n pendrive -I /dev/sdb1
+sudo mkfs -t vfat -c -v -n "meus_filmes" /dev/sdc1
+sudo mkfs -t ext4 /dev/sdd3
 
 lxle_16.04.3_64.iso
 sudo -s
