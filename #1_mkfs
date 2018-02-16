@@ -14,6 +14,7 @@ dd if=/media/sftool/Programas/Gentoo-livedvd-amd64-multilib-20160704.iso of=/dev
 Gentoo-livedvd-amd64-multilib-20160704.iso
 
 mkfs.reiserfs
+sudo mkfs -t vfat -n pendrive -I /dev/sdb1
 
 lxle_16.04.3_64.iso
 sudo -s
