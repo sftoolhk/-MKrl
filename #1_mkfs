@@ -24,4 +24,4 @@ sudo fdisk -l /dev/sdb
 umount /dev/sdb
 mkfs fs 
 mkfs.ext4 /dev/sdb1
-dd if=/home/sftool/Desktop/lxle_16.04.3_64.iso of=/dev/sdb status=progress && sync cd /home/sftool/Desktop/lxle_16.04.3_64.iso
+dd if=/home/sftool/Desktop/lxle_16.04.3_64.iso of=/dev/sdb status=progress && sync cd /home/sftool/Desktop/lxle_16.04.3_64.iso bs=16M
