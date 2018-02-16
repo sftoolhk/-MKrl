@@ -12,4 +12,13 @@ openSUSE-Leap-42.3-DVD-x86_64.iso
 md5sum openSUSE-Leap-42.3-DVD-x86_64.iso > openHASH.txt
 dd if=/media/sftool/Programas/Gentoo-livedvd-amd64-multilib-20160704.iso of=/dev/sdb status=progress && sync 
 Gentoo-livedvd-amd64-multilib-20160704.iso
+
+
+
+lxle_16.04.3_64.iso
 sudo -s
+sudo fdisk -l /dev/sdb
+umount /dev/sdb
+mkfs fs 
+mkfs.ext4 /dev/sdb1
+
