@@ -1,0 +1,39 @@
+1. Preparação do pendriveSeguem os passos para preparação do pendrive para receber os arquivos de instalação e boot:1.1 Identificar dispositivo no sistema que referencia o pendrive Para descobrir qual a referência, utilizaremos o comando:$ cat /proc/partitionsEsse
+ comando mostrará todos os dispositivos (HD's, CD/DVD's, cartões de 
+memória e pendrives) e, quando for o caso, as respectivas partições, bem
+ como suas capacidades de armazenamento. Atenção: Tenha 
+certeza que o dispositivo escolhido é o seu pendrive, pois os passos 
+seguintes incluirão formatação. Não queremos perder nossos arquivos 
+pessoais nem tão pouco nosso(s) sistema(s) operacional(is).1.2. Desmontar pendriveSe o pendrive tiver uma ou mais partições, devemos desmontá-las com o comando abaixo # umount /dev/sdbnonde
+ 'sdb' é a referência ao pendrive no sistema e 'n' é o número da 
+partição. Observe que todos os comandos começado com '#', devem ser 
+executados pelo root (o simbolo '#' indica superusuário).Exemplos de uso desse comando: # umount /dev/sdb1 # umount /dev/sdc2Caso o pendrive não contenha partições, basta usar o comando a seguir# umount /dev/sdb 1.3. Excluir partiçõesCaso seu pendrive não contenha partições, desconsidere esse passo. Para excluir as partições, utilizaremos o comando abaixo:# fdisk /dev/sdbonde
+ 'fdisk' é um utilitário de disco e 'sdb' é o nosso pendrive. Será 
+mostrado um prompt, indicado pela mensagem 'Comando (m para ajuda):', 
+para que possamos editar as partições do pendrive. Nesse prompt, 
+utilizaremos a seguinte sequência de comandos:p - para lista as partiçõesd
+ - para excluir uma partição. Nesse comando, caso hajam mais de uma 
+partição, será solicitado o número da partição a ser excluída.w - grava alterações e sai do utilitário.1.4. Formatar pendriveEm seguida, formataremos o pendrive com sistema de arquivos FAT32: # mkfs.vfat /dev/sdbObserve
+ que por utilizar FAT32, o pendrive se torna ser compatível com outros 
+sistemas operacionais. Isso quer dizer que podemos incluir nossos 
+arquivos convencionais (músicas, e-books, documentos, vídeos, etc) e 
+utilizar também nosso pendrive da forma tradicional. 2. Instalador e sistema de bootAgora que o pendrive já está pronto, iremos copiar os arquivos de instalação e instalar o sistema de boot.2.1. Montar pendrive para receber arquivos de instalaçãoPara montar o pendrive, devemos inicialmente criar o ponto de montagem através do comando$ mkdir pendriveonde
+ 'mkdir' criará o diretório 'pendrive', que é o ponto de montagem 
+escolhido. Em seguida, utilizaremos o comando de montagem a seguir# mount /dev/sdb pendrive/Com isso o pendrive passa a ser acessível a partir do diretório 'pendrive'.  2.2. Copiar instalador do Debian para o pendriveDevemos baixar uma das isos de instalação do debian aqui e copiar para o pendrive através do comando# cp isododebian.iso pendrive/onde 'isododebian.iso' é a .iso escolhida para instalação do debian.Dica:
+ se possuir uma boa conexão de internet, baixe a versão 'netinstall'. 
+Nela será instalado o core do debian com acesso à internet. O restante 
+do sistema pode ser construído pelo usuário através das ferramentas de 
+gerenciamento de pacotes 'apt-get' e 'dpkg'. Vale o aprendizado e o 
+sistema, ao fim, estará customizado para seus objetivos. 2.3 Instalação do sistema de boot no pendriveAcesse aqui
+ para baixar os arquivos necessarios para o boot via pendrive. Nessa 
+página, haverá um menu à esquerda. Clique em installer-*, onde * pode 
+ser:'i386' = arquiteturas de 32 bits com kernel linux'amd64' = arquiteturas de 64 bits'kfreebsd-i386' = arquiteturas 32 bits com kernel freebsd'kfreebsd-amd64' = arquiteturas 64 bits com kernel freebsd'armel' = arquiteturas baseadas em ARM'ia64' = arquiteturas alpha'mpis' = arquitetures baseados em MPISentre outras. Para
+ este artigo, selecionamos o link 'installer-i386'. Nele, clicaremos 
+ainda em 'current' -> 'images' -> 'hd-media'. Neste último, 
+veremos que existem três arquivos: - boot.img.gz = a imagem com as arquivos necessários para carregar o instalador do debian;- initrd.gz = arquivo necessário para carregamento de módulos para reconhecimento de HD's, partições e sistemas de arquivos; e - vmlinuz = imagem do kernel linux para boot via pendrive.Baixe-os e copie-os para o pendrive com o comando:# cp boot.img.gz initrd.gz vmlinuz pendrive/Agora
+ devemos criar um arquivo para configuração para o boot. Esse arquivo 
+irá referenciar os arquivos de boot baixados anteriormente. O comando 
+então será:# echo -e "default vmlinuz\nappend initrd=initrd.gz" > pendrive/syslinux.cfgPor fim, devemos instalar o sistema de boot no pendrive com os comandos:# umount pendrive/# syslinux /dev/sdbonde 'syslinux' é o sistema de boot que utilizaremos e será instalado nos setores iniciais (setores de boot) do pendrive.Considerações FinaisO
+ pendrive está pronto para instalação do Debian via USB.  Basta ligar o 
+computador com suporte a boot via USB configurado e o pendrive estar 
+inserido em alguma porta USB.Observações: Caso o syslinux não esteja instalado, utilize o comando abaixo para instalar:# apt-get install syslinux
