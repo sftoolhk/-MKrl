@@ -1,10 +1,12 @@
 //Criando e gerenciando partições
-sudoman mkfs
+sudo -s 
+man mkfs
 sudo fdisk -l /dev/sdb
-umount /dev/sdbmkfs 
-fs mkfs.ext4 /dev/sdb1dd if=/local/da/imagem.iso of=/dev/sdb && sync
-dd if=/local/da/imagem.iso  of=/dev/sdb status=progress && sync cd /local/da/imagem.iso 
-md5sum /local/da/imagem.iso  > sabaHASH.txt869217c8e08eb681794aadfbf90ab0e3  Sabayon_Linux_17.03_amd64_MATE.iso
+umount /dev/sdb
+mkfs fs 
+mkfs.ext4 /dev/sdb1
+dd if=/local/da/imagem.iso of=/dev/sdb status=progress && sync cd /local/da/imagem.iso 
+md5sum /local/da/imagem.iso  > sabaHASH.txt869217c8e08eb681794aadfbf90ab0e3 
 sha256sum -c Gentoo-livedvd-amd64-multilib-20160704.iso
 openSUSE-Leap-42.3-DVD-x86_64.iso
 md5sum openSUSE-Leap-42.3-DVD-x86_64.iso > openHASH.txt
