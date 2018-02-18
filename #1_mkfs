@@ -1,4 +1,14 @@
 //Criando e gerenciando partições
+filesystems (5)      - Linux filesystem types: minix, ext, ext2, ext3, ext4, Reiserfs, XFS, JFS, xia, msdos, umsdos, vfat, ntfs, proc, nfs, iso9660, hpfs, sysv, smb, ncpfs
+fs (5)               - Linux filesystem types: minix, ext, ext2, ext3, ext4, Reiserfs, XFS, JFS, xia, msdos, umsdos, vfat, ntfs, proc, nfs, iso9660, hpfs, sysv, smb, ncpfs
+fsck (8)             - check and repair a Linux filesystem
+fsfreeze (8)         - suspend access to a filesystem (Linux Ext3/4, ReiserFS, JFS, XFS)
+mkdosfs (8)          - create an MS-DOS filesystem under Linux
+mkfs (8)             - build a Linux filesystem
+mkfs.fat (8)         - create an MS-DOS filesystem under Linux
+mkfs.msdos (8)       - create an MS-DOS filesystem under Linux
+mkfs.vfat (8)        - create an MS-DOS filesystem under Linux
+
 sudo -s 
 man mkfs
 sudo fdisk -l /dev/sdb
