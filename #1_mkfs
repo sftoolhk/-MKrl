@@ -9,6 +9,11 @@ mkfs.fat (8)         - create an MS-DOS filesystem under Linux
 mkfs.msdos (8)       - create an MS-DOS filesystem under Linux
 mkfs.vfat (8)        - create an MS-DOS filesystem under Linux
 
+//Informações importantes
+sudo apt install smartmontools
+sudo smartctl -a /dev/sdc
+udo smartctl -i /dev/sdc
+
 sudo -s 
 man mkfs
 sudo fdisk -l /dev/sdb
